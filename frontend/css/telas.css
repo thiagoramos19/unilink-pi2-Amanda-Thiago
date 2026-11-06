@@ -1,0 +1,76 @@
+/* ==========================================================
+   UNILINK · Estilos de cada tela
+   ========================================================== */
+
+/* ---------- Pecas compartilhadas entre telas ---------- */
+
+.titulo-com-acao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.formulario { display: grid; gap: 14px; }
+
+.acoes-passo { display: flex; gap: 10px; }
+.acoes-passo .botao { flex: 1; }
+
+.lista-cartoes { display: grid; gap: 10px; }
+
+.lista-pontos { padding-left: 18px; list-style: disc; }
+
+.uma-linha {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Item clicavel de lista (eventos, conversas) */
+.item-lista {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 14px 16px;
+    text-align: left;
+    transition: border-color 0.15s;
+}
+.item-lista:hover { border-color: #d9d2cd; }
+.item-lista.ativo { border-color: var(--verde); box-shadow: 0 0 0 1px var(--verde); }
+
+.item-texto { display: grid; flex: 1; min-width: 0; }
+
+.data-evento {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 52px;
+    height: 56px;
+    border-radius: var(--raio-pequeno);
+    background: var(--rosa-claro);
+    color: #9b4a5b;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.1;
+}
+.data-evento strong { font-size: 1.35rem; }
+
+/* Lista + detalhe (eventos, mensagens, Joga pra Rolo).
+   No celular mostra um de cada vez; no computador, lado a lado. */
+.duas-colunas { display: grid; gap: 24px; align-items: start; }
+.duas-colunas .coluna-detalhe { display: none; }
+.duas-colunas.mostrando-detalhe .coluna-lista { display: none; }
+.duas-colunas.mostrando-detalhe .coluna-detalhe { display: block; }
+.duas-colunas .coluna-detalhe > .botao { margin-bottom: 12px; }
+.coluna-detalhe > .aviso-vazio { min-height: 240px; border: 1px dashed var(--borda); border-radius: var(--raio); }
+
+@media (min-width: 960px) {
+    .duas-colunas { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
+    .duas-colunas .coluna-lista,
+    .duas-colunas .coluna-detalhe { display: block !important; }
+    .duas-colunas .coluna-detalhe { position: sticky; top: calc(var(--altura-cabecalho) + 28px); }
+    .so-celular { display: none !important; }
+}
