@@ -1,0 +1,317 @@
+/* ==========================================================
+   UNILINK · Base visual
+   Cores, tipografia, componentes e o esqueleto das telas.
+   ========================================================== */
+
+:root {
+    /* Identidade (cores do logo) */
+    --rosa: #e5a1ae;
+    --rosa-claro: #f8e8eb;
+    --verde: #4f603e;
+    --verde-escuro: #3d4a30;
+    --verde-claro: #e9eee3;
+    --azul: #1f78c1;
+
+    /* Neutros */
+    --fundo: #faf8f6;
+    --superficie: #ffffff;
+    --texto: #1f231c;
+    --texto-suave: #6b7066;
+    --borda: #ebe6e2;
+    --erro: #c0392b;
+
+    --raio: 14px;
+    --raio-pequeno: 10px;
+    --sombra: 0 1px 2px rgb(31 35 28 / 0.04), 0 4px 16px rgb(31 35 28 / 0.05);
+
+    --altura-cabecalho: 60px;
+    --largura-menu: 76px;
+    --altura-menu-celular: 64px;
+}
+
+/* ---------- Reset ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    margin: 0;
+    font-family: "Nunito", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--texto);
+    background: var(--fundo);
+}
+
+h1, h2, h3, p, ul { margin: 0; }
+h1 { font-size: 1.5rem; font-weight: 800; }
+h2 { font-size: 1.15rem; font-weight: 800; }
+h3 { font-size: 0.95rem; font-weight: 700; }
+ul { padding: 0; list-style: none; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
+:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+
+.icone {
+    width: 22px;
+    height: 22px;
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.suave { color: var(--texto-suave); }
+.pequeno { font-size: 0.85rem; }
+.oculto { display: none !important; }
+
+/* ---------- Botoes ---------- */
+
+.botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 20px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+    background: var(--verde);
+    color: #fff;
+    transition: background 0.15s, transform 0.1s;
+}
+.botao:hover { background: var(--verde-escuro); }
+.botao:active { transform: scale(0.98); }
+.botao:disabled { opacity: 0.55; cursor: default; transform: none; }
+
+.botao-secundario { background: var(--verde-claro); color: var(--verde); }
+.botao-secundario:hover { background: #dde5d4; }
+
+.botao-contorno { background: transparent; color: var(--texto); border-color: var(--borda); }
+.botao-contorno:hover { background: var(--superficie); }
+
+.botao-perigo { background: transparent; color: var(--erro); border-color: #efd3cf; }
+.botao-perigo:hover { background: #fbefed; }
+
+.botao-largo { width: 100%; }
+
+.botao-icone {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--texto-suave);
+}
+.botao-icone:hover { background: var(--verde-claro); color: var(--verde); }
+
+/* ---------- Formularios ---------- */
+
+.campo { display: grid; gap: 6px; }
+.campo label { font-size: 0.85rem; font-weight: 700; }
+
+.entrada {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 14px;
+    border: 1px solid var(--borda);
+    border-radius: var(--raio-pequeno);
+    background: var(--superficie);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+.entrada:focus { outline: none; border-color: var(--verde); box-shadow: 0 0 0 3px var(--verde-claro); }
+textarea.entrada { resize: vertical; min-height: 88px; }
+
+/* RNF007: campo com erro fica com borda vermelha e mensagem embaixo */
+.campo.com-erro .entrada { border-color: var(--erro); box-shadow: 0 0 0 3px #f6dcd8; }
+.mensagem-erro { min-height: 1em; font-size: 0.8rem; color: var(--erro); }
+
+.entrada-senha { position: relative; }
+.entrada-senha .entrada { padding-right: 48px; }
+.entrada-senha .botao-icone { position: absolute; top: 0; right: 0; }
+
+.contador { justify-self: end; font-size: 0.75rem; color: var(--texto-suave); }
+.contador.no-limite { color: var(--erro); font-weight: 700; }
+
+/* ---------- Blocos ---------- */
+
+.cartao {
+    background: var(--superficie);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    padding: 20px;
+}
+
+.avatar {
+    display: inline-grid;
+    place-items: center;
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: var(--verde-escuro);
+    background: var(--verde-claro);
+}
+.avatar.tom-1 { background: var(--rosa-claro); color: #9b4a5b; }
+.avatar.tom-2 { background: #e3eef8; color: #1d5f96; }
+.avatar.tom-3 { background: #f6efdc; color: #8a6a1c; }
+.avatar-grande { width: 96px; height: 96px; font-size: 2rem; }
+
+.etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 36px;
+    padding: 0 14px;
+    border: 1px solid var(--borda);
+    border-radius: 999px;
+    background: var(--superficie);
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+button.etiqueta:hover { border-color: var(--verde); }
+.etiqueta.ativo { background: var(--verde); border-color: var(--verde); color: #fff; }
+
+.aviso-vazio {
+    display: grid;
+    place-items: center;
+    gap: 8px;
+    padding: 40px 16px;
+    text-align: center;
+    color: var(--texto-suave);
+}
+
+/* Aviso que aparece no rodape e some sozinho */
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: calc(var(--altura-menu-celular) + 16px);
+    z-index: 50;
+    max-width: calc(100% - 32px);
+    padding: 12px 18px;
+    border-radius: var(--raio-pequeno);
+    background: var(--texto);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: var(--sombra);
+    transform: translate(-50%, 20px);
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+}
+.toast.visivel { opacity: 1; transform: translate(-50%, 0); }
+
+/* Janela sobreposta (Pix, detalhes) */
+.janela {
+    width: min(420px, calc(100% - 32px));
+    padding: 24px;
+    border: 0;
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+}
+.janela::backdrop { background: rgb(31 35 28 / 0.4); }
+
+/* ==========================================================
+   Esqueleto das telas logadas
+   Celular: cabecalho em cima e menu embaixo.
+   Tablet e computador (a partir de 768px): menu verde na lateral.
+   ========================================================== */
+
+.cabecalho {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--altura-cabecalho);
+    padding: 0 8px 0 16px;
+    background: var(--rosa);
+    color: #fff;
+}
+.cabecalho .marca {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+}
+.cabecalho .botao-icone { color: #fff; }
+.cabecalho .botao-icone:hover,
+.cabecalho .botao-icone[aria-current="page"] { background: rgb(255 255 255 / 0.2); color: #fff; }
+
+.menu {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 30;
+    display: flex;
+    justify-content: space-around;
+    height: calc(var(--altura-menu-celular) + env(safe-area-inset-bottom));
+    padding: 0 4px env(safe-area-inset-bottom);
+    background: var(--verde);
+}
+.menu a,
+.menu button {
+    display: grid;
+    place-items: center;
+    /* RNF013: area de toque generosa para nao clicar no icone errado */
+    min-width: 56px;
+    height: var(--altura-menu-celular);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: rgb(255 255 255 / 0.6);
+}
+/* RNF008: icone da pagina atual fica claro e destacado */
+.menu [aria-current="page"] { color: #fff; }
+.menu [aria-current="page"] .icone { stroke-width: 2.4; }
+.menu .rotulo { display: none; }
+.menu .sair { display: none; }
+
+.conteudo {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 20px 16px calc(var(--altura-menu-celular) + 32px);
+}
+
+.titulo-pagina { margin-bottom: 16px; }
+
+@media (min-width: 768px) {
+    body.logado { padding-left: var(--largura-menu); }
+
+    .cabecalho { padding: 0 16px 0 28px; }
+
+    .menu {
+        inset: 0 auto 0 0;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 4px;
+        width: var(--largura-menu);
+        height: auto;
+        padding: 12px 0;
+    }
+    .menu a,
+    .menu button { width: 100%; height: 64px; }
+    .menu a:hover,
+    .menu button:hover { color: #fff; background: rgb(255 255 255 / 0.08); }
+    .menu [aria-current="page"] { background: rgb(255 255 255 / 0.14); }
+    .menu .sair { display: grid; margin-top: auto; }
+
+    .conteudo { padding: 28px 28px 48px; }
+
+    .toast { bottom: 24px; }
+}
