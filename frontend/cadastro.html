@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unilink · Criar conta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/telas.css">
+</head>
+<body class="acesso">
+    <section class="acesso-marca">
+        <img src="img/logo.png" alt="Logo do Unilink" width="160" height="156">
+        <p>Onde Uniriers se encontram.</p>
+    </section>
+
+    <main class="acesso-cartao cartao">
+        <p class="passos suave pequeno">Passo <span id="passo-atual">1</span> de 3</p>
+        <div class="progresso" aria-hidden="true"><span id="barra-progresso"></span></div>
+
+        <form id="form-cadastro" novalidate>
+            <!-- Passo 1: dados de acesso -->
+            <fieldset class="passo" data-passo="1">
+                <legend><h1>Crie sua conta</h1></legend>
+                <div class="campo">
+                    <label for="email">E-mail institucional</label>
+                    <input class="entrada" id="email" type="email" maxlength="100" placeholder="nome@edu.unirio.br" autocomplete="email">
+                    <span class="mensagem-erro"></span>
+                </div>
+                <div class="campo">
+                    <label for="senha">Senha</label>
+                    <div class="entrada-senha">
+                        <input class="entrada" id="senha" type="password" autocomplete="new-password">
+                        <button class="botao-icone" type="button" data-revelar="senha" aria-label="Mostrar senha">
+                            <svg class="icone" aria-hidden="true"><use href="img/icones.svg#olho"/></svg>
+                        </button>
+                    </div>
+                    <span class="mensagem-erro"></span>
+                </div>
+                <div class="campo">
+                    <label for="confirmar-senha">Confirmar senha</label>
+                    <div class="entrada-senha">
+                        <input class="entrada" id="confirmar-senha" type="password" autocomplete="new-password">
+                        <button class="botao-icone" type="button" data-revelar="confirmar-senha" aria-label="Mostrar senha">
+                            <svg class="icone" aria-hidden="true"><use href="img/icones.svg#olho"/></svg>
+                        </button>
+                    </div>
+                    <span class="mensagem-erro"></span>
+                </div>
+            </fieldset>
+
+            <!-- Passo 2: dados pessoais -->
+            <fieldset class="passo oculto" data-passo="2">
+                <legend><h1>Dados pessoais</h1></legend>
+                <div class="campo">
+                    <label for="nome">Nome</label>
+                    <input class="entrada" id="nome" type="text" maxlength="100" autocomplete="name">
+                    <span class="mensagem-erro"></span>
+                </div>
+                <div class="campo">
+                    <label for="nascimento">Data de nascimento</label>
+                    <input class="entrada" id="nascimento" type="date">
+                    <span class="mensagem-erro"></span>
+                </div>
+                <div class="campo">
+                    <label for="curso">Curso</label>
+                    <input class="entrada" id="curso" type="text" maxlength="100" placeholder="Ex.: Sistemas de Informação">
+                    <span class="mensagem-erro"></span>
+                </div>
+                <div class="campo">
+                    <label for="campus">Campus / prédio</label>
+                    <select class="entrada" id="campus">
+                        <option value="CCET">CCET</option>
+                        <option value="CCH">CCH</option>
+                        <option value="CCBS">CCBS</option>
+                        <option value="CCJP">CCJP</option>
+                    </select>
+                    <span class="mensagem-erro"></span>
+                </div>
+            </fieldset>
+
+            <!-- Passo 3: biografia -->
+            <fieldset class="passo oculto" data-passo="3">
+                <legend><h1>Sua biografia</h1></legend>
+                <div class="campo">
+                    <label for="gostos">Três coisas que gosta de fazer</label>
+                    <input class="entrada" id="gostos" type="text" maxlength="255" placeholder="Separe por vírgulas">
+                    <span class="mensagem-erro"></span>
+                </div>
+                <div class="campo">
+                    <label for="frase">Uma frase que te define</label>
+                    <input class="entrada" id="frase" type="text" maxlength="255">
+                    <span class="mensagem-erro"></span>
+                </div>
+                <div class="campo">
+                    <label for="mood">Seu mood atual</label>
+                    <input class="entrada" id="mood" type="text" maxlength="100">
+                    <span class="mensagem-erro"></span>
+                </div>
+                <div class="campo">
+                    <label for="funfact">Fun fact ou red flag</label>
+                    <input class="entrada" id="funfact" type="text" maxlength="255">
+                    <span class="mensagem-erro"></span>
+                </div>
+            </fieldset>
+
+            <div class="acoes-passo">
+                <button class="botao botao-contorno oculto" type="button" id="voltar-passo">Voltar</button>
+                <button class="botao" type="submit" id="avancar">Prosseguir</button>
+            </div>
+        </form>
+
+        <p class="acesso-rodape"><a href="index.html">Voltar para o login</a></p>
+    </main>
+
+    <script src="js/app.js" defer></script>
+    <script src="js/cadastro.js" defer></script>
+</body>
+</html>
