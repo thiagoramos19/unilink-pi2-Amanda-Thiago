@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unilink · Entrar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/telas.css">
+</head>
+<body class="acesso">
+    <section class="acesso-marca">
+        <img src="img/logo.png" alt="Logo do Unilink" width="160" height="156">
+        <p>Onde Uniriers se encontram.</p>
+    </section>
+
+    <main class="acesso-cartao cartao">
+        <h1>Entrar</h1>
+        <p class="suave">Use seu e-mail institucional da UNIRIO.</p>
+
+        <form id="form-login" novalidate>
+            <div class="campo">
+                <label for="email">E-mail</label>
+                <input class="entrada" id="email" type="email" placeholder="nome@edu.unirio.br" autocomplete="email">
+                <span class="mensagem-erro"></span>
+            </div>
+            <div class="campo">
+                <label for="senha">Senha</label>
+                <div class="entrada-senha">
+                    <input class="entrada" id="senha" type="password" autocomplete="current-password">
+                    <button class="botao-icone" type="button" data-revelar="senha" aria-label="Mostrar senha">
+                        <svg class="icone" aria-hidden="true"><use href="img/icones.svg#olho"/></svg>
+                    </button>
+                </div>
+                <span class="mensagem-erro"></span>
+            </div>
+            <a class="link-discreto" href="recuperar-senha.html">Esqueceu a senha?</a>
+            <button class="botao botao-largo" type="submit">Entrar</button>
+        </form>
+
+        <p class="acesso-rodape">Ainda não tem conta? <a href="cadastro.html">Criar uma conta</a></p>
+    </main>
+
+    <script src="js/app.js" defer></script>
+    <script src="js/login.js" defer></script>
+</body>
+</html>

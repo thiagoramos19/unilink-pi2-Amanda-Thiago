@@ -19,6 +19,11 @@ function salvarUsuario(usuario) {
 // Estudante logado (null na tela de login e no cadastro)
 const EU = usuarioAtual();
 
+function sair() {
+    localStorage.removeItem("unilink.usuario");
+    location.href = "index.html";
+}
+
 // ---------- Comunicacao com o back-end ----------
 
 // Chama a API e devolve o JSON da resposta.
@@ -121,6 +126,41 @@ function ligarContadores() {
         entrada.addEventListener("input", atualizar);
         atualizar();
     });
+}
+
+// ---------- Cabecalho e menu das telas logadas ----------
+
+const PAGINAS = [
+    { id: "perfil", rotulo: "Seu perfil", icone: "perfil", link: "perfil.html" },
+];
+
+function montarLayout() {
+    const atual = document.body.dataset.pagina;
+    if (!atual) return;
+
+    // Telas logadas: sem login, volta para a tela de entrar
+    if (!EU) {
+        location.replace("index.html");
+        return;
+    }
+
+    document.body.classList.add("logado");
+    const marcar = (id) => (id === atual ? 'aria-current="page"' : "");
+
+    const links = PAGINAS.map((p) => `
+        <a href="${p.link}" ${marcar(p.id)} aria-label="${p.rotulo}" title="${p.rotulo}">${icone(p.icone)}</a>
+    `).join("");
+
+    document.body.insertAdjacentHTML("afterbegin", `
+        <header class="cabecalho">
+            <a class="marca" href="perfil.html">unilink</a>
+        </header>
+        <nav class="menu" aria-label="Menu principal">
+            ${links}
+            <button class="sair" type="button" aria-label="Sair" title="Sair">${icone("sair")}</button>
+        </nav>
+    `);
+    document.querySelector(".menu .sair").addEventListener("click", sair);
 }
 
 montarLayout();

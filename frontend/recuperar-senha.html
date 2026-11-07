@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unilink · Recuperar senha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/telas.css">
+</head>
+<body class="acesso">
+    <section class="acesso-marca">
+        <img src="img/logo.png" alt="Logo do Unilink" width="160" height="156">
+        <p>Onde Uniriers se encontram.</p>
+    </section>
+
+    <main class="acesso-cartao cartao">
+        <h1>Recuperar senha</h1>
+        <p class="suave">Digite seu e-mail institucional e enviaremos as instruções para criar uma nova senha.</p>
+
+        <form id="form-recuperar" novalidate>
+            <div class="campo">
+                <label for="email">E-mail</label>
+                <input class="entrada" id="email" type="email" placeholder="nome@edu.unirio.br" autocomplete="email">
+                <span class="mensagem-erro"></span>
+            </div>
+            <button class="botao botao-largo" type="submit">Enviar</button>
+        </form>
+
+        <p class="acesso-rodape"><a href="index.html">Voltar para o login</a></p>
+    </main>
+
+    <script src="js/app.js" defer></script>
+    <script src="js/recuperar-senha.js" defer></script>
+</body>
+</html>

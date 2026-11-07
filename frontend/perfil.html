@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unilink · Seu perfil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/telas.css">
+</head>
+<body data-pagina="perfil">
+    <main class="conteudo perfil">
+        <section class="cartao perfil-resumo">
+            <span id="perfil-avatar"></span>
+            <h1 id="perfil-nome"></h1>
+            <p class="suave" id="perfil-curso"></p>
+            <ul class="numeros">
+                <li><strong id="qtd-amigos">0</strong><span class="suave pequeno">amigos</span></li>
+                <li><strong id="qtd-eventos">0</strong><span class="suave pequeno">eventos</span></li>
+            </ul>
+        </section>
+
+        <section class="cartao">
+            <div class="titulo-com-acao">
+                <h2>Biografia</h2>
+                <button class="botao botao-secundario" type="button" id="editar-bio">Editar biografia</button>
+            </div>
+
+            <dl class="bio" id="bio-leitura"></dl>
+
+            <!-- UC07: editar biografia -->
+            <form class="formulario oculto" id="form-bio" novalidate>
+                <div class="campo">
+                    <label for="bio-gostos">Três coisas que amo</label>
+                    <input class="entrada" id="bio-gostos" maxlength="255" data-contador="cont-gostos">
+                    <span class="contador" id="cont-gostos"></span>
+                </div>
+                <div class="campo">
+                    <label for="bio-frase">Uma frase que me define</label>
+                    <input class="entrada" id="bio-frase" maxlength="255" data-contador="cont-frase">
+                    <span class="contador" id="cont-frase"></span>
+                </div>
+                <div class="campo">
+                    <label for="bio-mood">Mood atual</label>
+                    <input class="entrada" id="bio-mood" maxlength="100" data-contador="cont-mood">
+                    <span class="contador" id="cont-mood"></span>
+                </div>
+                <div class="campo">
+                    <label for="bio-funfact">Fun fact / red flag</label>
+                    <input class="entrada" id="bio-funfact" maxlength="255" data-contador="cont-funfact">
+                    <span class="contador" id="cont-funfact"></span>
+                </div>
+                <div class="acoes-passo">
+                    <button class="botao botao-contorno" type="button" id="cancelar-bio">Voltar</button>
+                    <button class="botao" type="submit">Concluir</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- RNF009: Central de Ajuda -->
+        <section class="cartao ajuda">
+            <h2><svg class="icone" aria-hidden="true"><use href="img/icones.svg#ajuda"/></svg>Central de Ajuda</h2>
+            <details>
+                <summary>Como embaralhar as cartas?</summary>
+                <p>Em Descobrir, toque no botão com as duas setas em círculo no canto da tela. Aparecem novos perfis.</p>
+            </details>
+            <details>
+                <summary>Como adicionar um amigo?</summary>
+                <p>Escolha uma carta, toque em “Virar a carta” para ler a biografia e depois em “Adicionar amigo”.</p>
+            </details>
+            <details>
+                <summary>Como conversar no chat?</summary>
+                <p>Toque no balão no canto superior direito, escolha o amigo e escreva no campo de baixo. O Unibot responde dúvidas rápidas.</p>
+            </details>
+            <details>
+                <summary>Como comprar no Joga pra Rolo?</summary>
+                <p>Toque em “Comprar”, pague o Pix simulado e combine a entrega com o vendedor pelo chat.</p>
+            </details>
+        </section>
+
+        <button class="botao botao-perigo botao-largo" type="button" id="sair">
+            <svg class="icone" aria-hidden="true"><use href="img/icones.svg#sair"/></svg>Sair da conta
+        </button>
+    </main>
+
+    <script src="js/app.js" defer></script>
+    <script src="js/perfil.js" defer></script>
+</body>
+</html>
