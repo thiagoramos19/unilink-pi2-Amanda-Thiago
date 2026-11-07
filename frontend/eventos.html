@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unilink · Eventos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/telas.css">
+</head>
+<body data-pagina="eventos">
+    <main class="conteudo duas-colunas" id="eventos">
+        <section class="coluna-lista">
+            <div class="titulo-pagina">
+                <h1>Eventos</h1>
+                <p class="suave">Palestras, festas e feiras da UNIRIO.</p>
+            </div>
+            <!-- FA02 do UC06: filtrar por mes e campus -->
+            <div class="filtros-linha">
+                <label class="oculto" for="filtro-mes">Mês</label>
+                <select class="entrada" id="filtro-mes">
+                    <option value="">Todos os meses</option>
+                </select>
+                <label class="oculto" for="filtro-campus">Campus</label>
+                <select class="entrada" id="filtro-campus">
+                    <option value="">Todos os campi</option>
+                    <option value="CCET">CCET</option>
+                    <option value="CCH">CCH</option>
+                    <option value="CCBS">CCBS</option>
+                    <option value="CCJP">CCJP</option>
+                </select>
+            </div>
+            <ul id="lista-eventos" class="lista-cartoes"></ul>
+        </section>
+
+        <section class="coluna-detalhe" id="detalhe-evento" aria-live="polite">
+            <div class="aviso-vazio">
+                <svg class="icone" aria-hidden="true"><use href="img/icones.svg#calendario"/></svg>
+                <p>Escolha um evento para ver os detalhes.</p>
+            </div>
+        </section>
+    </main>
+
+    <dialog class="janela" id="janela-mapa">
+        <h2>Como chegar</h2>
+        <p class="suave" id="mapa-local"></p>
+        <img src="img/mapa-unirio.png" alt="Mapa do campus da UNIRIO na Urca" class="mapa">
+        <form method="dialog"><button class="botao botao-largo">Fechar</button></form>
+    </dialog>
+
+    <script src="js/app.js" defer></script>
+    <script src="js/eventos.js" defer></script>
+</body>
+</html>
