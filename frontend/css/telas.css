@@ -117,6 +117,30 @@ body.acesso {
     .acesso-cartao { justify-self: start; }
 }
 
+/* ---------- Eventos ---------- */
+
+.filtros-linha { display: flex; gap: 8px; margin-bottom: 14px; }
+.filtros-linha .entrada { flex: 1; }
+
+.detalhe { display: grid; gap: 14px; }
+.detalhe-info { display: grid; gap: 6px; color: var(--texto-suave); }
+.detalhe-info li { display: flex; align-items: center; gap: 8px; }
+.detalhe-info .icone { width: 18px; height: 18px; }
+.contagem strong { font-size: 1.4rem; color: var(--verde); }
+.confirmado, .encerrado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    border-radius: 999px;
+    font-weight: 700;
+}
+.confirmado { background: var(--verde-claro); color: var(--verde); }
+.encerrado { background: var(--fundo); color: var(--texto-suave); }
+
+.mapa { margin: 14px 0; border-radius: var(--raio-pequeno); }
+
 /* ---------- Perfil ---------- */
 
 .perfil { display: grid; gap: 16px; max-width: 640px; }

@@ -131,6 +131,7 @@ function ligarContadores() {
 // ---------- Cabecalho e menu das telas logadas ----------
 
 const PAGINAS = [
+    { id: "eventos", rotulo: "Eventos", icone: "calendario", link: "eventos.html" },
     { id: "perfil", rotulo: "Seu perfil", icone: "perfil", link: "perfil.html" },
 ];
 
