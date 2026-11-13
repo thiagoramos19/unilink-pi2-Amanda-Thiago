@@ -24,7 +24,7 @@ formLogin.addEventListener("submit", async (evento) => {
         const estudante = await enviar("POST", "/login", { email: email.value.trim(), senha: senha.value });
         salvarUsuario(estudante);
         sessionStorage.setItem("unilink.boas-vindas", "1");
-        location.href = "perfil.html";
+        location.href = "home.html";
     } catch (erro) {
         // FE01: credenciais incorretas deixam os dois campos em vermelho
         marcarErro(email, "");

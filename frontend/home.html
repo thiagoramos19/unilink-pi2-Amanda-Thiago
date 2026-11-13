@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unilink · Início</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/telas.css">
+</head>
+<body data-pagina="inicio">
+    <main class="conteudo home">
+        <div class="home-feed">
+            <!-- Stories (UC10) -->
+            <section class="stories" aria-label="Stories">
+                <button class="story story-novo" type="button" id="novo-story">
+                    <span class="story-anel"><span id="avatar-story"></span><span class="story-mais">+</span></span>
+                    <span class="story-nome">Seu story</span>
+                </button>
+                <div id="lista-stories" class="stories-lista"></div>
+            </section>
+
+            <!-- Publicar postagem (UC09) -->
+            <form class="cartao publicar" id="form-postagem" novalidate>
+                <label class="oculto" for="texto-postagem">O que está acontecendo?</label>
+                <textarea class="entrada" id="texto-postagem" placeholder="O que está acontecendo no campus?" maxlength="2000"></textarea>
+                <img id="previa-imagem" class="previa-imagem oculto" alt="Prévia da imagem escolhida">
+                <div class="publicar-acoes">
+                    <div class="tipos-midia" role="group" aria-label="Anexar">
+                        <label class="botao-icone" title="Imagem" aria-label="Anexar imagem">
+                            <svg class="icone" aria-hidden="true"><use href="img/icones.svg#imagem"/></svg>
+                            <input type="file" accept="image/*" id="arquivo-imagem" class="oculto">
+                        </label>
+                        <button class="botao-icone" type="button" data-tipo="MUSICA" title="Música" aria-label="Marcar como música">
+                            <svg class="icone" aria-hidden="true"><use href="img/icones.svg#musica"/></svg>
+                        </button>
+                        <button class="botao-icone" type="button" data-tipo="LIVRO" title="Livro" aria-label="Marcar como livro">
+                            <svg class="icone" aria-hidden="true"><use href="img/icones.svg#livro"/></svg>
+                        </button>
+                        <button class="botao-icone" type="button" data-tipo="ARQUIVO" title="Arquivo" aria-label="Marcar como arquivo">
+                            <svg class="icone" aria-hidden="true"><use href="img/icones.svg#clipe"/></svg>
+                        </button>
+                    </div>
+                    <button class="botao" type="submit">Postar</button>
+                </div>
+            </form>
+
+            <!-- Filtros da timeline (UC08) -->
+            <div class="filtros" id="filtros" role="group" aria-label="Filtrar postagens">
+                <button class="etiqueta ativo" type="button" data-filtro="TODOS">Tudo</button>
+                <button class="etiqueta" type="button" data-filtro="EMPREGO">
+                    <svg class="icone" aria-hidden="true"><use href="img/icones.svg#emprego"/></svg>Oportunidades de emprego
+                </button>
+                <button class="etiqueta" type="button" data-filtro="CCET">CCET</button>
+                <button class="etiqueta" type="button" data-filtro="CCH">CCH</button>
+                <button class="etiqueta" type="button" data-filtro="CCBS">CCBS</button>
+                <button class="etiqueta" type="button" data-filtro="CCJP">CCJP</button>
+            </div>
+
+            <section id="feed" class="feed" aria-live="polite"></section>
+        </div>
+
+        <aside class="home-lateral">
+            <section class="cartao">
+                <h2>Próximos eventos</h2>
+                <ul id="proximos-eventos" class="lista-eventos-curta"></ul>
+                <a class="botao botao-secundario botao-largo" href="eventos.html">Ver agenda</a>
+            </section>
+        </aside>
+    </main>
+
+    <!-- Camera para publicar story (UC10) -->
+    <dialog class="janela" id="janela-camera">
+        <h2>Novo story</h2>
+        <div class="camera">
+            <video id="camera-video" autoplay playsinline muted></video>
+            <img id="camera-foto" class="oculto" alt="Foto capturada para o story">
+        </div>
+        <div class="acoes-passo">
+            <button class="botao botao-contorno" type="button" id="camera-voltar">Voltar</button>
+            <button class="botao" type="button" id="camera-capturar">Capturar</button>
+        </div>
+    </dialog>
+
+    <!-- Ver um story -->
+    <dialog class="janela janela-story" id="janela-story">
+        <header class="story-topo" id="story-topo"></header>
+        <div class="story-conteudo" id="story-conteudo"></div>
+        <button class="botao botao-contorno botao-largo" type="button" id="story-fechar">Fechar</button>
+    </dialog>
+
+    <script src="js/app.js" defer></script>
+    <script src="js/home.js" defer></script>
+</body>
+</html>

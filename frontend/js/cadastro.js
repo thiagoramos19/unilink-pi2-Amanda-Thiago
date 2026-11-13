@@ -87,7 +87,7 @@ formCadastro.addEventListener("submit", async (evento) => {
             funfact: valor("funfact"),
         });
         salvarUsuario(estudante);
-        location.href = "perfil.html";
+        location.href = "home.html";
     } catch (erro) {
         // E-mail ja cadastrado: volta para o primeiro passo e mostra o erro no campo
         if (erro.status === 409) {

@@ -72,6 +72,15 @@ function avatar(nome, classeExtra = "") {
     return `<span class="avatar tom-${soma % 4} ${classeExtra}" aria-hidden="true">${escapar(iniciais(nome))}</span>`;
 }
 
+function tempoRelativo(data) {
+    const minutos = Math.round((Date.now() - new Date(data)) / 60000);
+    if (minutos < 1) return "agora";
+    if (minutos < 60) return `${minutos} min`;
+    const horas = Math.round(minutos / 60);
+    if (horas < 24) return `${horas} h`;
+    return new Date(data).toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
+}
+
 function toast(mensagem) {
     let aviso = document.querySelector(".toast");
     if (!aviso) {
@@ -131,6 +140,7 @@ function ligarContadores() {
 // ---------- Cabecalho e menu das telas logadas ----------
 
 const PAGINAS = [
+    { id: "inicio", rotulo: "Início", icone: "inicio", link: "home.html" },
     { id: "eventos", rotulo: "Eventos", icone: "calendario", link: "eventos.html" },
     { id: "perfil", rotulo: "Seu perfil", icone: "perfil", link: "perfil.html" },
 ];
@@ -154,7 +164,7 @@ function montarLayout() {
 
     document.body.insertAdjacentHTML("afterbegin", `
         <header class="cabecalho">
-            <a class="marca" href="perfil.html">unilink</a>
+            <a class="marca" href="home.html">unilink</a>
         </header>
         <nav class="menu" aria-label="Menu principal">
             ${links}
