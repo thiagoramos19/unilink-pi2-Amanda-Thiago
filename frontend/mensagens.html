@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unilink · Mensagens</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/telas.css">
+</head>
+<body data-pagina="mensagens">
+    <main class="conteudo duas-colunas mensagens" id="mensagens">
+        <section class="coluna-lista">
+            <div class="titulo-pagina">
+                <h1>Mensagens</h1>
+                <p class="suave">Converse com seus amigos.</p>
+            </div>
+            <ul id="lista-conversas" class="lista-cartoes"></ul>
+        </section>
+
+        <section class="coluna-detalhe" id="chat" aria-live="polite">
+            <div class="aviso-vazio">
+                <svg class="icone" aria-hidden="true"><use href="img/icones.svg#mensagem"/></svg>
+                <p>Comece a conversar com um de seus amigos.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/app.js" defer></script>
+    <script src="js/mensagens.js" defer></script>
+</body>
+</html>
