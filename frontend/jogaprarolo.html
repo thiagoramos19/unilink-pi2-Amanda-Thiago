@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unilink · Joga pra Rolo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/telas.css">
+</head>
+<body data-pagina="rolo">
+    <main class="conteudo duas-colunas rolo">
+        <section class="coluna-lista">
+            <div class="titulo-pagina">
+                <h1>Joga pra Rolo</h1>
+                <p class="suave">Compre e venda direto com outros estudantes, sem taxas.</p>
+            </div>
+            <div class="abas" role="tablist">
+                <button class="etiqueta ativo" type="button" role="tab" aria-selected="true" data-aba="ofertas">Ofertas</button>
+                <button class="etiqueta" type="button" role="tab" aria-selected="false" data-aba="pedidos">Meus pedidos</button>
+            </div>
+            <ul id="lista-produtos" class="lista-cartoes"></ul>
+        </section>
+
+        <!-- Anunciar produto (UC11) -->
+        <section class="coluna-detalhe">
+            <form class="cartao formulario" id="form-oferta" novalidate>
+                <h2>Anunciar um item</h2>
+                <div class="campo">
+                    <label for="titulo">Descrição</label>
+                    <input class="entrada" id="titulo" maxlength="100" placeholder="Ex.: Calculadora científica Casio">
+                    <span class="mensagem-erro"></span>
+                </div>
+                <div class="campo">
+                    <label for="preco">Preço (R$)</label>
+                    <input class="entrada" id="preco" inputmode="decimal" placeholder="0,00">
+                    <span class="mensagem-erro"></span>
+                </div>
+                <button class="botao botao-largo" type="submit">Criar oferta</button>
+                <p class="suave pequeno">Itens proibidos: substâncias ilícitas, armas, medicamentos, bebidas alcoólicas e trabalhos acadêmicos.</p>
+            </form>
+        </section>
+    </main>
+
+    <!-- Pagamento simulado (UC05) -->
+    <dialog class="janela" id="janela-pix">
+        <h2>Pagamento via Pix</h2>
+        <p class="suave" id="pix-resumo"></p>
+        <img src="img/qrcode-pix.png" alt="QR Code do Pix" class="qrcode">
+        <div class="campo">
+            <label for="pix-codigo">Pix copia e cola (simulado)</label>
+            <input class="entrada" id="pix-codigo" readonly>
+        </div>
+        <div class="acoes-passo">
+            <button class="botao botao-contorno" type="button" id="pix-voltar">Voltar</button>
+            <button class="botao" type="button" id="pix-concluir">Concluir</button>
+        </div>
+    </dialog>
+
+    <script src="js/app.js" defer></script>
+    <script src="js/jogaprarolo.js" defer></script>
+</body>
+</html>

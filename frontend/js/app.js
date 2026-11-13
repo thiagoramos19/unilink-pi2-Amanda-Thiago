@@ -142,6 +142,7 @@ function ligarContadores() {
 const PAGINAS = [
     { id: "inicio", rotulo: "Início", icone: "inicio", link: "home.html" },
     { id: "descobrir", rotulo: "Descobrir", icone: "descobrir", link: "descobrir.html" },
+    { id: "rolo", rotulo: "Joga pra Rolo", icone: "sacola", link: "jogaprarolo.html" },
     { id: "eventos", rotulo: "Eventos", icone: "calendario", link: "eventos.html" },
     { id: "perfil", rotulo: "Seu perfil", icone: "perfil", link: "perfil.html" },
 ];
