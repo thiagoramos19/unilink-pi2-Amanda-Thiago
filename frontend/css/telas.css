@@ -117,6 +117,87 @@ body.acesso {
     .acesso-cartao { justify-self: start; }
 }
 
+/* ---------- Inicio ---------- */
+
+.home { display: grid; gap: 24px; align-items: start; }
+.home-feed { display: grid; gap: 16px; min-width: 0; }
+.home-lateral { display: none; }
+
+@media (min-width: 1100px) {
+    .home { grid-template-columns: minmax(0, 1fr) 300px; }
+    .home-lateral { display: block; position: sticky; top: calc(var(--altura-cabecalho) + 28px); }
+}
+
+.stories { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+.stories-lista { display: flex; gap: 14px; }
+.story {
+    display: grid;
+    justify-items: center;
+    gap: 6px;
+    flex: none;
+    width: 68px;
+    padding: 0;
+    border: 0;
+    background: none;
+}
+.story-anel {
+    position: relative;
+    padding: 3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rosa), var(--verde));
+}
+.story-anel .avatar { border: 3px solid var(--fundo); }
+.avatar-story { width: 60px; height: 60px; font-size: 1.05rem; }
+.story-novo .story-anel { background: var(--borda); }
+.story-mais {
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--fundo);
+    border-radius: 50%;
+    background: var(--verde);
+    color: #fff;
+    font-weight: 800;
+    line-height: 1;
+}
+.story-nome { max-width: 100%; overflow: hidden; font-size: 0.78rem; white-space: nowrap; text-overflow: ellipsis; }
+
+.publicar { display: grid; gap: 10px; padding: 14px; }
+.publicar textarea { min-height: 72px; border: 0; padding: 6px; }
+.publicar textarea:focus { box-shadow: none; }
+.publicar-acoes { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.tipos-midia { display: flex; }
+.tipos-midia .ativo { background: var(--verde-claro); color: var(--verde); }
+.previa-imagem { max-height: 260px; border-radius: var(--raio-pequeno); object-fit: cover; }
+
+.filtros { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+.filtros .icone { width: 16px; height: 16px; }
+
+.feed { display: grid; gap: 12px; }
+
+.postagem { display: grid; gap: 12px; padding: 18px; }
+.postagem-autor { display: flex; align-items: center; gap: 12px; }
+.postagem-texto { white-space: pre-line; overflow-wrap: anywhere; }
+.postagem-imagem { border-radius: var(--raio-pequeno); max-height: 420px; object-fit: cover; }
+.etiqueta-midia { justify-self: start; min-height: 30px; background: var(--verde-claro); border-color: transparent; color: var(--verde); }
+.etiqueta-midia .icone { width: 16px; height: 16px; }
+
+.comentarios { display: grid; gap: 10px; }
+.comentarios:empty { display: none; }
+.comentarios li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.9rem; }
+.avatar-mini { width: 28px; height: 28px; font-size: 0.7rem; }
+
+.comentar { display: flex; gap: 6px; padding-top: 12px; border-top: 1px solid var(--borda); }
+.comentar .entrada { min-height: 40px; border-radius: 999px; background: var(--fundo); border-color: transparent; }
+
+.home-lateral .cartao { display: grid; gap: 16px; }
+.lista-eventos-curta { display: grid; gap: 14px; }
+.lista-eventos-curta li { display: flex; gap: 12px; align-items: center; }
+
 /* ---------- Eventos ---------- */
 
 .filtros-linha { display: flex; gap: 8px; margin-bottom: 14px; }
@@ -164,3 +245,32 @@ body.acesso {
 .ajuda details p { padding-bottom: 12px; color: var(--texto-suave); }
 
 .link-discreto { justify-self: end; margin-top: -6px; font-size: 0.85rem; font-weight: 700; color: var(--verde); }
+
+/* ---------- Stories (camera e visualizacao) ---------- */
+
+.story-novo.tem-story .story-anel { background: linear-gradient(135deg, var(--rosa), var(--verde)); }
+
+.camera {
+    overflow: hidden;
+    margin: 16px 0;
+    border-radius: var(--raio-pequeno);
+    background: var(--texto);
+    aspect-ratio: 3 / 4;
+}
+.camera video,
+.camera img { width: 100%; height: 100%; object-fit: cover; }
+/* Espelha a previa da camera frontal, como um espelho */
+.camera video { transform: scaleX(-1); }
+
+.janela-story { display: none; gap: 14px; }
+.janela-story[open] { display: grid; }
+.story-topo { display: flex; align-items: center; gap: 12px; }
+.story-conteudo {
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border-radius: var(--raio-pequeno);
+    background: linear-gradient(135deg, var(--rosa), var(--verde));
+    aspect-ratio: 3 / 4;
+}
+.story-conteudo img { width: 100%; height: 100%; object-fit: cover; }
