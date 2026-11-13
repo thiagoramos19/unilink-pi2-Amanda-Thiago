@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unilink · Descobrir</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/telas.css">
+</head>
+<body data-pagina="descobrir">
+    <main class="conteudo descobrir">
+        <div class="titulo-pagina titulo-com-acao">
+            <div>
+                <h1>Descobrir</h1>
+                <p class="suave">Escolha uma carta, vire e conheça alguém novo.</p>
+            </div>
+            <button class="botao-icone" type="button" id="embaralhar" aria-label="Embaralhar cartas" title="Embaralhar cartas">
+                <svg class="icone" aria-hidden="true"><use href="img/icones.svg#embaralhar"/></svg>
+            </button>
+        </div>
+
+        <section id="palco" class="palco" aria-live="polite"></section>
+        <div id="mao" class="mao" role="listbox" aria-label="Cartas disponíveis"></div>
+    </main>
+
+    <script src="js/app.js" defer></script>
+    <script src="js/descobrir.js" defer></script>
+</body>
+</html>

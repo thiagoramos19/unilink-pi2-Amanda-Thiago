@@ -141,6 +141,7 @@ function ligarContadores() {
 
 const PAGINAS = [
     { id: "inicio", rotulo: "Início", icone: "inicio", link: "home.html" },
+    { id: "descobrir", rotulo: "Descobrir", icone: "descobrir", link: "descobrir.html" },
     { id: "eventos", rotulo: "Eventos", icone: "calendario", link: "eventos.html" },
     { id: "perfil", rotulo: "Seu perfil", icone: "perfil", link: "perfil.html" },
 ];
@@ -165,6 +166,7 @@ function montarLayout() {
     document.body.insertAdjacentHTML("afterbegin", `
         <header class="cabecalho">
             <a class="marca" href="home.html">unilink</a>
+            <a class="botao-icone" href="mensagens.html" ${marcar("mensagens")} aria-label="Mensagens" title="Mensagens">${icone("mensagem")}</a>
         </header>
         <nav class="menu" aria-label="Menu principal">
             ${links}
