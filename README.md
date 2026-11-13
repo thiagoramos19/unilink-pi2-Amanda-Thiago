@@ -160,7 +160,6 @@ Todos recebem e devolvem JSON. Quando algo dá errado, a resposta traz o motivo 
 
 ## Uso de inteligência artificial
 
-Com autorização do professor, usamos um assistente de IA (Claude) para gerar uma primeira versão do código,
-que está em <https://github.com/thiagoramos19/testes-claude>. Cada parte foi trazida para este repositório
+Com autorização do professor, usamos um assistente de IA (Claude) para gerar uma primeira versão do código. Cada parte foi trazida para este repositório
 por um de nós, lida, testada e ajustada, e revisada pelo outro em um pull request antes de entrar na `main`.
 O histórico de commits e os pull requests mostram quem levou e quem revisou cada etapa.
