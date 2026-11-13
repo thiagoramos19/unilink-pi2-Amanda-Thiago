@@ -67,6 +67,8 @@
 .duas-colunas .coluna-detalhe > .botao { margin-bottom: 12px; }
 .coluna-detalhe > .aviso-vazio { min-height: 240px; border: 1px dashed var(--borda); border-radius: var(--raio); }
 
+.rolo .coluna-detalhe { display: block; }
+
 @media (min-width: 960px) {
     .duas-colunas { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); }
     .duas-colunas .coluna-lista,
@@ -285,6 +287,24 @@ body.acesso {
 .encerrado { background: var(--fundo); color: var(--texto-suave); }
 
 .mapa { margin: 14px 0; border-radius: var(--raio-pequeno); }
+
+/* ---------- Joga pra Rolo ---------- */
+
+.abas { display: flex; gap: 8px; margin-bottom: 14px; }
+
+.produto { display: flex; align-items: center; gap: 14px; padding: 14px 16px; }
+.produto-acao { display: grid; justify-items: end; gap: 6px; }
+.preco { font-weight: 800; color: var(--verde); }
+.produto-acao .botao { min-height: 38px; padding: 0 16px; }
+
+.qrcode { width: 180px; margin: 16px auto; image-rendering: pixelated; }
+#janela-pix .acoes-passo { margin-top: 16px; }
+
+@media (max-width: 480px) {
+    .produto { flex-wrap: wrap; }
+    .produto .item-texto { flex-basis: calc(100% - 58px); }
+    .produto-acao { grid-auto-flow: column; align-items: center; justify-content: space-between; width: 100%; }
+}
 
 /* ---------- Mensagens ---------- */
 
