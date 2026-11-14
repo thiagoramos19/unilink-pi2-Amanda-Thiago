@@ -18,10 +18,11 @@ public class EventoRepository {
     private static final String SELECT = """
             SELECT ev.idevento, ev.nome_evento, ev.data_hora_evento, ev.local_campus, ev.qtd_confirmados,
                    org.nome AS organizador,
-                   EXISTS (SELECT 1 FROM presenca_evento pe
-                           WHERE pe.fk_id_evento = ev.idevento AND pe.fk_email_estudante = ?) AS confirmei
+                   (pe.fk_id_evento IS NOT NULL) AS confirmei
             FROM evento ev
             JOIN estudante org ON org.email_institucional = ev.fk_email_organizador
+            LEFT JOIN presenca_evento pe
+                   ON pe.fk_id_evento = ev.idevento AND pe.fk_email_estudante = ?
             """;
 
     private static final RowMapper<Evento> EVENTO = (rs, linha) -> new Evento(
@@ -47,8 +48,25 @@ public class EventoRepository {
         return jdbc.query(SELECT + " WHERE ev.idevento = ?", EVENTO, email, id).stream().findFirst();
     }
 
-    public void confirmarPresenca(int id, String email) {
+    /**
+     * Soma 1 no contador, mas so se o evento existir e ainda nao tiver acontecido.
+     * Por ser o primeiro comando da transacao, ja trava a linha do evento para escrita:
+     * quem chegar depois espera na fila, em vez de entrar em deadlock (medicao 1).
+     * Devolve false quando nenhuma linha foi alterada.
+     */
+    public boolean somarConfirmado(int id) {
+        return jdbc.update("""
+                UPDATE evento SET qtd_confirmados = qtd_confirmados + 1
+                WHERE idevento = ? AND data_hora_evento > NOW()
+                """, id) > 0;
+    }
+
+    public boolean existe(int id) {
+        return jdbc.queryForObject("SELECT COUNT(*) FROM evento WHERE idevento = ?", Integer.class, id) > 0;
+    }
+
+    /** A chave primaria impede presenca repetida e a chave estrangeira impede estudante inexistente. */
+    public void registrarPresenca(int id, String email) {
         jdbc.update("INSERT INTO presenca_evento (fk_email_estudante, fk_id_evento) VALUES (?, ?)", email, id);
-        jdbc.update("UPDATE evento SET qtd_confirmados = qtd_confirmados + 1 WHERE idevento = ?", id);
     }
 }
