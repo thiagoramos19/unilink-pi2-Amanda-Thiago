@@ -2,7 +2,10 @@ package br.unirio.unilink.repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -45,20 +48,28 @@ public class PostagemRepository {
                 List.of()));
     }
 
-    public List<Comentario> listarComentarios(int idPostagem) {
+    /**
+     * Comentarios de TODAS as postagens numa consulta so, agrupados pelo id da postagem.
+     * Medicao 2: antes era uma consulta por postagem (problema N+1: 1 consulta do feed
+     * + N consultas de comentarios). Agora o feed inteiro usa 2 consultas, qualquer que seja N.
+     */
+    public Map<Integer, List<Comentario>> listarComentariosPorPostagem() {
         String sql = """
-                SELECT c.idcomentario, c.fk_email_autor, e.nome, c.texto, c.data_hora
+                SELECT c.fk_idpost, c.idcomentario, c.fk_email_autor, e.nome, c.texto, c.data_hora
                 FROM comentario c
                 JOIN estudante e ON e.email_institucional = c.fk_email_autor
-                WHERE c.fk_idpost = ?
-                ORDER BY c.data_hora, c.idcomentario
+                ORDER BY c.fk_idpost, c.data_hora, c.idcomentario
                 """;
-        return jdbc.query(sql, (rs, linha) -> new Comentario(
-                rs.getInt("idcomentario"),
-                rs.getString("fk_email_autor"),
-                rs.getString("nome"),
-                rs.getString("texto"),
-                rs.getTimestamp("data_hora").toLocalDateTime()), idPostagem);
+        Map<Integer, List<Comentario>> porPostagem = new HashMap<>();
+        jdbc.query(sql, rs -> {
+            porPostagem.computeIfAbsent(rs.getInt("fk_idpost"), id -> new ArrayList<>()).add(new Comentario(
+                    rs.getInt("idcomentario"),
+                    rs.getString("fk_email_autor"),
+                    rs.getString("nome"),
+                    rs.getString("texto"),
+                    rs.getTimestamp("data_hora").toLocalDateTime()));
+        });
+        return porPostagem;
     }
 
     public boolean existe(int idPostagem) {

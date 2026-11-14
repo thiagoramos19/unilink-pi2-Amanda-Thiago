@@ -19,6 +19,10 @@ final class Validacao {
         }
     }
 
+    static ResponseStatusException erro(String mensagem) {
+        return new ResponseStatusException(HttpStatus.BAD_REQUEST, mensagem);
+    }
+
     static boolean vazio(String texto) {
         return texto == null || texto.isBlank();
     }

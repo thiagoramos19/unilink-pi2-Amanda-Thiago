@@ -188,3 +188,5 @@ CREATE INDEX idx_estudante_campus ON estudante(campus_predio);
 CREATE INDEX idx_postagem_criacao ON postagem(data_hora_criacao DESC);
 CREATE INDEX idx_story_expiracao ON story(hora_fim);
 CREATE INDEX idx_mensagem_dialogo ON mensagem(fk_email_remetente, fk_email_destinatario);
+-- Medicao 2 do teste de carga: a agenda e sempre ordenada pela data do evento
+CREATE INDEX idx_evento_data ON evento(data_hora_evento);
