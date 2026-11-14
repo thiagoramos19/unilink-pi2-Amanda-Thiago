@@ -11,12 +11,16 @@ import br.unirio.unilink.model.Evento;
 
 /**
  * SQL das tabelas evento e presenca_evento.
+ * O numero de confirmados e contado direto em presenca_evento (medicao 2):
+ * assim confirmar presenca nao precisa escrever na linha do evento, que era
+ * disputada por todo mundo que confirmava no mesmo evento.
  */
 @Repository
 public class EventoRepository {
 
     private static final String SELECT = """
-            SELECT ev.idevento, ev.nome_evento, ev.data_hora_evento, ev.local_campus, ev.qtd_confirmados,
+            SELECT ev.idevento, ev.nome_evento, ev.data_hora_evento, ev.local_campus,
+                   (SELECT COUNT(*) FROM presenca_evento c WHERE c.fk_id_evento = ev.idevento) AS qtd_confirmados,
                    org.nome AS organizador,
                    (pe.fk_id_evento IS NOT NULL) AS confirmei
             FROM evento ev
@@ -46,23 +50,6 @@ public class EventoRepository {
 
     public Optional<Evento> buscar(int id, String email) {
         return jdbc.query(SELECT + " WHERE ev.idevento = ?", EVENTO, email, id).stream().findFirst();
-    }
-
-    /**
-     * Soma 1 no contador, mas so se o evento existir e ainda nao tiver acontecido.
-     * Por ser o primeiro comando da transacao, ja trava a linha do evento para escrita:
-     * quem chegar depois espera na fila, em vez de entrar em deadlock (medicao 1).
-     * Devolve false quando nenhuma linha foi alterada.
-     */
-    public boolean somarConfirmado(int id) {
-        return jdbc.update("""
-                UPDATE evento SET qtd_confirmados = qtd_confirmados + 1
-                WHERE idevento = ? AND data_hora_evento > NOW()
-                """, id) > 0;
-    }
-
-    public boolean existe(int id) {
-        return jdbc.queryForObject("SELECT COUNT(*) FROM evento WHERE idevento = ?", Integer.class, id) > 0;
     }
 
     /** A chave primaria impede presenca repetida e a chave estrangeira impede estudante inexistente. */
