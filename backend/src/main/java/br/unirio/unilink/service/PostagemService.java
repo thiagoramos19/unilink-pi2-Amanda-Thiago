@@ -5,10 +5,12 @@ import static br.unirio.unilink.service.Validacao.vazio;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
+import br.unirio.unilink.model.Comentario;
 import br.unirio.unilink.model.Estudante;
 import br.unirio.unilink.model.NovaPostagem;
 import br.unirio.unilink.model.NovoComentario;
@@ -32,11 +34,15 @@ public class PostagemService {
         this.estudantes = estudantes;
     }
 
-    /** Todas as postagens, da mais nova para a mais antiga, cada uma com seus comentarios. */
+    /**
+     * Todas as postagens, da mais nova para a mais antiga, cada uma com seus comentarios.
+     * Sao so 2 consultas ao banco (postagens e comentarios), e nao 1 + N.
+     */
     public List<Postagem> listarFeed() {
+        Map<Integer, List<Comentario>> comentarios = repository.listarComentariosPorPostagem();
         return repository.listarTodas().stream()
                 .map(p -> new Postagem(p.id(), p.emailAutor(), p.nomeAutor(), p.cursoAutor(), p.campusAutor(),
-                        p.texto(), p.tipoMidia(), p.dataHoraCriacao(), repository.listarComentarios(p.id())))
+                        p.texto(), p.tipoMidia(), p.dataHoraCriacao(), comentarios.getOrDefault(p.id(), List.of())))
                 .toList();
     }
 
